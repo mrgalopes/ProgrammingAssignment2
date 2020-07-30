@@ -1,7 +1,10 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Provides a way to cache the inverse of a matrix. Useful for large matrices,
+## where the calculation of the inverse is expensive.
 
-## Write a short comment describing this function
+## Creates a matrix wrapper that can cache its inverse. The inverse must be
+## calculated using the cacheSolve function.
+## INPUT: Matrix whose inverse will be cached
+## OUTPUT: Wrapped matrix object that can cache its inverse
 
 makeCacheMatrix <- function(x = matrix()) {
     inv <- NULL
@@ -17,10 +20,14 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## Calculates the inverse for a matrix wrapped by the makeCacheMatrix function.
+## If the matrix did not change and the inverse was already calculated, returns
+## the cached version. Otherwise, calculates, caches the result and returns it.
+## INPUT: Matrix wrapped by makeCacheMatrix and other arguments to the solve
+## function
+## OUTPUT: Inverse of the matrix
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
     inv <- x$getinverse()
     if (!is.null(inv)) {
         message("Getting cached data")
